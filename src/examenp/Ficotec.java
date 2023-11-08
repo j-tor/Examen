@@ -45,6 +45,7 @@ public class Ficotec {
 
                         } catch (Exception e) {
                         System.out.println("Ingrese un tipo de cuenta Valido");
+                        read.nextLine();
                         vaido=true;
  
                         }

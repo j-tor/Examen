@@ -77,7 +77,7 @@ public class Banco {
         if (cuentaOrigen != null && cuentaDestino != null) {
             if (cuentaOrigen.retiro(monto)) {
                 cuentaDestino.deposito(monto);
-                System.out.println("Transferencia de $" + monto + " realizada de la cuenta " + nc1 + " a la cuenta " + nc2);
+                System.out.println("Transferencia de L" + monto + " realizada de la cuenta " + nc1 + " a la cuenta \n" + nc2);
                 return true;
             }
         }
