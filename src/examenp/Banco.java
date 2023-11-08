@@ -15,21 +15,21 @@ public class Banco {
     private ArrayList<CuentaBancaria> cuentas = new ArrayList<>();
 
     public CuentaBancaria search(int nc) {
-        return searchRecursive(nc, 0);
+        return search(nc, 0);
     }
 
-    private CuentaBancaria searchRecursive(int nc, int index) {
-        if (index < cuentas.size()) {
-            CuentaBancaria cuenta = cuentas.get(index);
-            if (cuenta.getNumeroCuenta() == nc) {
-                return cuenta;
-            } else {
-                return searchRecursive(nc, index + 1);
-            }
+    private CuentaBancaria search(int nc, int index) {
+    if (index < cuentas.size()) {
+        CuentaBancaria cuenta = cuentas.get(index);
+        if (Integer.parseInt(cuenta.getNumeroCuenta()) == nc) {
+            return cuenta;
         } else {
-            return null;
+            return search(nc, index + 1);
         }
+    } else {
+        return null;
     }
+}
 
     public void add(int num, String cliente, TipoCuenta tipo) {
         if (search(num) != null) {
@@ -41,10 +41,8 @@ public class Banco {
         if (tipo == TipoCuenta.AHORRO) {
             nuevaCuenta = new CuentaAhorro(Integer.toString(num), cliente);
         } else if (tipo == TipoCuenta.CHEQUE) {
-            nuevaCuenta = new CuentaCheque(Integer.toString(num), cliente);
-        } else if (tipo == TipoCuenta.PLAZOFIJO) {
             nuevaCuenta = new CuentaPlazoFijo(Integer.toString(num), cliente);
-        }
+        } 
 
         cuentas.add(nuevaCuenta);
         System.out.println("Nueva cuenta agregada: " + nuevaCuenta);
@@ -67,7 +65,7 @@ public class Banco {
     public void applyInterests() {
         for (CuentaBancaria cuenta : cuentas) {
             if (cuenta instanceof CuentaPlazoFijo) {
-                ((CuentaPlazoFijo) cuenta).deposito(cuenta.getSaldo() * CuentaPlazoFijo.TASA);
+                ((CuentaPlazoFijo) cuenta).deposito(((CuentaPlazoFijo) cuenta).saldoDisponible * CuentaPlazoFijo.TASA);
             }
         }
     }

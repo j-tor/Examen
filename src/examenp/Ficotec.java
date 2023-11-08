@@ -28,14 +28,27 @@ public class Ficotec {
 
             switch (menu) {
                 case 1:
-                    System.out.println("Ingrese el número de cuenta: ");
-                    int numCuenta = read.nextInt();
-                    System.out.println("Ingrese el nombre del cliente: ");
-                    String nombreCliente = read.next();
-                    System.out.println("Seleccione el tipo de cuenta (AHORRO o CHEQUE): ");
-                    TipoCuenta tipoCuenta = TipoCuenta.valueOf(read.next().toUpperCase());
+                    boolean vaido=true;
+                    try {
+                        
+                        while (vaido) {                            
+                            System.out.println("Ingrese el número de cuenta: ");
+                            int numCuenta = read.nextInt();
+                            System.out.println("Ingrese el nombre del cliente: ");
+                            String nombreCliente = read.next();
+                            System.out.println("Seleccione el tipo de cuenta (AHORRO o CHEQUE): ");
+                            TipoCuenta tipoCuenta = TipoCuenta.valueOf(read.next().toUpperCase());
+
+                            banco.add(numCuenta, nombreCliente, tipoCuenta);
+                            break;
+                        }
+
+                        } catch (Exception e) {
+                        System.out.println("Ingrese un tipo de cuenta Valido");
+                        vaido=true;
+ 
+                        }
                     
-                    banco.add(numCuenta, nombreCliente, tipoCuenta);
                     break;
                 case 2:
                     banco.evalDeactivations();
